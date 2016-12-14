@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static ru.innopolis.uni.course3.textParser.ParseValidator.*;
 
 
@@ -19,11 +22,21 @@ public class TextParser implements IParser {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
+    private static final Pattern engLettersPattern = Pattern.compile("[^a-zA-Z$]");
+
+    private Matcher matcher;
+
     public void parseFile(String fileName){
         String line;
         String splittedArray[];
+
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName));) {
             while ((line = fileReader.readLine()) != null) {
+                matcher = engLettersPattern.matcher(line);
+                if (matcher.matches()){
+                    logger.error("Английские буквы в файле! Обработка файла " + fileName + " прекращена!");
+                    throw new IOException("English letters in file!");
+                }
                 splittedArray = line.split("[^А-Яа-я$]");
                 //printArr(splittedArray);
                 for (String arg:splittedArray) {
