@@ -19,16 +19,13 @@ public class URLParser implements Runnable {
         this.fileName = fileName;
     }
 
-    private void parseFile() throws IOException {
-        throw new IOException();
+    private void parseFile(){
+        logger.info("Обнаружен url-ресурс");
+        logger.warn("Парсинг url-файлов временно не поддерживается");
     }
 
     @Override
     public void run() {
-        try {
-            parseFile();
-        } catch (IOException e) {
-            logger.error("Обнаружен url-ресурс, временно не обрабaтывается");
-        }
+        parseFile();
     }
 }

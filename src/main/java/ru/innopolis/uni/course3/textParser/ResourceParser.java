@@ -13,17 +13,19 @@ import java.util.regex.Pattern;
 /**
  * Created by innopolis on 14.12.2016.
  */
-public class ParseValidator implements IValidator {
-
+public class ResourceParser implements IValidator {
+    //add метод с синхронизацией
     public static Map<String,Integer> wordList = new HashMap<String, Integer>();
 
-    public ParseValidator(String [] args) throws IOException {
+    //isURLparser
+    public ResourceParser(String [] args) throws IOException {
         for (String arg: args) {
             if (validate(arg)){
-                URLParser urlParser = new URLParser(arg);
+                Thread urlThread = new Thread(new URLParser(arg));
+                urlThread.start();
             } else{
-                Thread thread = new Thread(new TextParser(arg));
-                thread.start();
+                Thread textThread = new Thread(new TextParser(arg));
+                textThread.start();
             }
         }
     }

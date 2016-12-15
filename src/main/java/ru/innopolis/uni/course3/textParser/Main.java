@@ -7,6 +7,6 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        ParseValidator parser = new ParseValidator(args);
+        ResourceParser parser = new ResourceParser(args);
     }
 }
