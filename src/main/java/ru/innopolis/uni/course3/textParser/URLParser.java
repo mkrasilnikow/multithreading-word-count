@@ -1,5 +1,8 @@
 package ru.innopolis.uni.course3.textParser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -10,13 +13,14 @@ public class URLParser implements Runnable {
 
     private String fileName;
 
+    private static final Logger logger = LoggerFactory.getLogger(URLParser.class);
+
     public URLParser(String fileName) throws IOException {
         this.fileName = fileName;
     }
 
-    private void parseFile() throws FileNotFoundException, IOException {
-        throw new FileNotFoundException("Обнаружен url-временно не обрабaтывается");
-
+    private void parseFile() throws IOException {
+        throw new IOException();
     }
 
     @Override
@@ -24,7 +28,7 @@ public class URLParser implements Runnable {
         try {
             parseFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Обнаружен url-ресурс, временно не обрабaтывается");
         }
     }
 }

@@ -29,6 +29,7 @@ public class TextParser implements Runnable, IValidator {
     }
 
     private void parseFile(){
+        logger.info("Запустился поток обработки текстовых файлов\n");
         String line;
         String splittedArray[];
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName));) {
@@ -56,12 +57,12 @@ public class TextParser implements Runnable, IValidator {
         }
     }
 
-    void printList(Map<String,Integer> objects){
+    private void printList(Map<String,Integer> objects){
         for (Map.Entry entry : objects.entrySet()) {
             logger.info("Key: " + entry.getKey() + " Value: "
                     + entry.getValue());
         }
-        System.out.println("\n\n");
+        logger.info("\n\n");
     }
 
 /*    void printArr(String[] arr){
@@ -73,7 +74,9 @@ public class TextParser implements Runnable, IValidator {
     @Override
     public void run() {
         synchronized (wordList) {
-            parseFile();
+            if(!Thread.currentThread().isInterrupted()){
+                parseFile();
+            }
         }
     }
 
