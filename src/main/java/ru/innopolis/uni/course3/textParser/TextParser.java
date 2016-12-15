@@ -18,26 +18,26 @@ import static ru.innopolis.uni.course3.textParser.ParseValidator.*;
 /**
  * Created by innopolis on 14.12.2016.
  */
-public class TextParser implements IParser {
+public class TextParser implements Runnable, IValidator {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(TextParser.class);
 
-    private static final Pattern engLettersPattern = Pattern.compile("[^a-zA-Z$]");
+    private String fileName;
 
-    private Matcher matcher;
+    public TextParser(String fileName) {
+        this.fileName = fileName;
+    }
 
-    public void parseFile(String fileName){
+    private void parseFile(){
         String line;
         String splittedArray[];
-
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName));) {
             while ((line = fileReader.readLine()) != null) {
-                matcher = engLettersPattern.matcher(line);
-                if (matcher.matches()){
+                if (validate(line)){
                     logger.error("Английские буквы в файле! Обработка файла " + fileName + " прекращена!");
                     throw new IOException("English letters in file!");
                 }
-                splittedArray = line.split("[^А-Яа-я$]");
+                splittedArray = line.split("[^А-Яа-яёЁ]");
                 //printArr(splittedArray);
                 for (String arg:splittedArray) {
                     if(wordList.containsKey(arg)){
@@ -58,15 +58,33 @@ public class TextParser implements IParser {
 
     void printList(Map<String,Integer> objects){
         for (Map.Entry entry : objects.entrySet()) {
-
-            System.out.println("Key: " + entry.getKey() + " Value: "
+            logger.info("Key: " + entry.getKey() + " Value: "
                     + entry.getValue());
+        }
+        System.out.println("\n\n");
+    }
+
+/*    void printArr(String[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }*/
+
+    @Override
+    public void run() {
+        synchronized (wordList) {
+            parseFile();
         }
     }
 
-    void printArr(String[] arr){
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+    @Override
+    public boolean validate(String lineToValidate) {
+        final Pattern engLettersPattern = Pattern.compile("[a-zA-Z]");
+        Matcher matcher = engLettersPattern.matcher(lineToValidate);
+        if (matcher.find()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

@@ -1,2 +1,33 @@
 2016-12-15 01:13:54,103 [ERROR][main            ][uni.course3.textParser.Main] - Невозможно найти файл!
 2016-12-15 01:13:54,127 [WARN ][main            ][uni.course3.textParser.Main] - msmdmsmdmsmdsmd
+2016-12-15 18:12:48,623 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key:  Value: 2
+2016-12-15 18:12:48,623 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key: яя Value: 1
+2016-12-15 18:12:48,623 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key: организации Value: 2
+2016-12-15 18:12:48,623 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key: в Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key: Задача Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-0        ][uni.course3.textParser.TextParser] - Key: особенности Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key:  Value: 21
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: яя Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: организации Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: в Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: два Value: 1
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: Задача Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: пять Value: 1
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: особенности Value: 2
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: раз Value: 1
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: три Value: 1
+2016-12-15 18:12:48,638 [INFO ][Thread-2        ][uni.course3.textParser.TextParser] - Key: четыре Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key:  Value: 24
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: яя Value: 4
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: ааа Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: аа Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: организации Value: 2
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: два Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: Задача Value: 2
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: пять Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: особенности Value: 2
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: три Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: ааааааа Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: в Value: 2
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: раз Value: 1
+2016-12-15 18:12:48,676 [INFO ][Thread-1        ][uni.course3.textParser.TextParser] - Key: четыре Value: 1

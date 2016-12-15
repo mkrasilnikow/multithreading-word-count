@@ -13,24 +13,30 @@ import java.util.regex.Pattern;
 /**
  * Created by innopolis on 14.12.2016.
  */
-public class ParseValidator {
+public class ParseValidator implements IValidator {
 
     public static Map<String,Integer> wordList = new HashMap<String, Integer>();
 
-    private static final Pattern urlPattern = Pattern.compile("^(https?:\\/\\/)?([\\w\\.]+)\\.([a-z]{2,6}\\.?)(\\/[\\w\\.]*)*\\/?$");
-
-    private Matcher matcher;
-
-public ParseValidator(String [] args) throws IOException {
-    for (String arg: args) {
-        matcher = urlPattern.matcher(arg);
-        if (matcher.matches()){
-            URLParser urlParser = new URLParser();
-            urlParser.parseFile(arg);
-        } else{
-            TextParser textParser = new TextParser();
-            textParser.parseFile(arg);
+    public ParseValidator(String [] args) throws IOException {
+        for (String arg: args) {
+            if (validate(arg)){
+                URLParser urlParser = new URLParser(arg);
+            } else{
+                Thread thread = new Thread(new TextParser(arg));
+                thread.start();
+            }
         }
     }
+
+    @Override
+    public boolean validate(String lineToValidate) {
+        final Pattern urlPattern = Pattern.compile("^(https?:\\/\\/)?([\\w\\.]+)\\.([a-z]{2,6}\\.?)(\\/[\\w\\.]*)*\\/?$");
+        Matcher matcher = urlPattern.matcher(lineToValidate);
+        if (matcher.matches()){
+            return true;
+        } else{
+            return false;
+        }
+
     }
 }
