@@ -13,15 +13,18 @@ public class URLParser implements Runnable {
 
     private String fileName;
 
-    private static final Logger logger = LoggerFactory.getLogger(URLParser.class);
+    private final Logger logger = LoggerFactory.getLogger(URLParser.class);
 
-    public URLParser(String fileName) throws IOException {
+    public URLParser(String fileName){
         this.fileName = fileName;
     }
 
     private void parseFile(){
-        logger.info("Обнаружен url-ресурс");
-        logger.warn("Парсинг url-файлов временно не поддерживается");
+        logger.info("Запустился поток обработки url-ресурса " + fileName +"\n");
+        logger.info("Обнаружен url-ресурс " + fileName +"\n");
+        logger.warn("Парсинг url-ресурсов не поддерживается");
+        TextParser.setStopWork(true);
+        logger.info("Завершился поток обработки url-ресурса " + fileName +"\n");
     }
 
     @Override

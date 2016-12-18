@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
@@ -15,19 +17,34 @@ import java.util.regex.Pattern;
  */
 public class ResourceParser implements IValidator {
     //add метод с синхронизацией
-    public static Map<String,Integer> wordList = new HashMap<String, Integer>();
+    private static Map<String,Integer> wordList = new HashMap<String, Integer>();
 
+    private final Logger logger = LoggerFactory.getLogger(ResourceParser.class);
+
+    private List<Thread> threads = new ArrayList<Thread>();
     //isURLparser
-    public ResourceParser(String [] args) throws IOException {
+    public ResourceParser(String [] args){
         for (String arg: args) {
             if (validate(arg)){
-                Thread urlThread = new Thread(new URLParser(arg));
-                urlThread.start();
+                threads.add(new Thread(new URLParser(arg)));
             } else{
-                Thread textThread = new Thread(new TextParser(arg));
-                textThread.start();
+                threads.add(new Thread(new TextParser(arg)));
             }
         }
+    }
+
+    public void Start(){
+        for (Thread thread:threads) {
+            thread.start();
+        }
+    }
+
+    public static void Put(String key, Integer value){
+        wordList.put(key, value);
+    }
+
+    public static Map<String, Integer> getWordList() {
+        return wordList;
     }
 
     @Override
@@ -39,6 +56,5 @@ public class ResourceParser implements IValidator {
         } else{
             return false;
         }
-
     }
 }
