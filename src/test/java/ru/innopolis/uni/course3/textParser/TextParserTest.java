@@ -1,5 +1,6 @@
 package ru.innopolis.uni.course3.textParser;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.*;
@@ -20,12 +22,15 @@ public class TextParserTest {
 
     private Logger logger = LoggerFactory.getLogger(TextParserTest.class);
 
-    private String fileName = "C:/";
+    private String fileName = "C:/inno_code/2.ddd";
 
     @Before
     public void init() {
         textParser = new TextParser(fileName);
+        ResourceParser.getWordList().clear();
+        TextParser.setStopWork(true);
     }
+
     @Test
     public void validate(){
         String pattern = "Такой text не проходит проверку";
@@ -33,15 +38,9 @@ public class TextParserTest {
     }
 
     @Test
-    public void wrongFileOpening() throws IOException,FileNotFoundException{
-        textParser.parseFile();
-    }
-
-    @Test
     public void parseBreak(){
-        TextParser.setStopWork(true);
         textParser.parseFile();
-        assertTrue("fd",ResourceParser.getWordList().size()==0);
+        assertTrue("HashMap пуст",ResourceParser.getWordList().isEmpty()== true);
     }
 
 }

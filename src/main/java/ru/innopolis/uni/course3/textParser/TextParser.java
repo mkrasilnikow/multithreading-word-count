@@ -34,7 +34,6 @@ public class TextParser implements Runnable, IValidator,IParser {
     @Override
     public void run() {
         parseFile();
-
     }
 
     @Override
@@ -64,9 +63,9 @@ public class TextParser implements Runnable, IValidator,IParser {
                 synchronized (getWordList()){
                     for (String arg:splittedArray) {
                         if(getWordList().containsKey(arg)){
-                            Put(arg,getWordList().get(arg)+1);
+                            putToMap(arg,getWordList().get(arg)+1);
                         } else if(arg.hashCode() != 0){
-                            Put(arg,1);
+                            putToMap(arg,1);
                         }
                         printList(getWordList());
                     }
@@ -74,13 +73,11 @@ public class TextParser implements Runnable, IValidator,IParser {
             }
         } catch (FileNotFoundException e) {
             logger.error("Невозможно найти файл!");
-
         } catch (IOException e) {
             logger.error("Ошибка ввода-вывода");
         } finally {
             logger.info("Завершился поток обработки текстового файла " + fileName +"\n");
         }
-
     }
 
     public void printList(Map<String,Integer> objects){

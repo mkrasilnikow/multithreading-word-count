@@ -39,7 +39,7 @@ public class ResourceParser implements IValidator {
         }
     }
 
-    public static void Put(String key, Integer value){
+    public static void putToMap(String key, Integer value){
         wordList.put(key, value);
     }
 
