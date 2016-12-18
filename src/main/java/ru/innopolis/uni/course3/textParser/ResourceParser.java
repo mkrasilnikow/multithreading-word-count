@@ -33,7 +33,7 @@ public class ResourceParser implements IValidator {
         }
     }
 
-    public void Start(){
+    public void startAllParsers(){
         for (Thread thread:threads) {
             thread.start();
         }

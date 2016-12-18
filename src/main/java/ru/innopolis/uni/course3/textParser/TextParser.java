@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -18,7 +19,7 @@ import static ru.innopolis.uni.course3.textParser.ResourceParser.*;
 /**
  * Created by innopolis on 14.12.2016.
  */
-public class TextParser implements Runnable, IValidator {
+public class TextParser implements Runnable, IValidator,IParser {
 
     private final Logger logger = LoggerFactory.getLogger(TextParser.class);
 
@@ -32,7 +33,7 @@ public class TextParser implements Runnable, IValidator {
 
     @Override
     public void run() {
-            parseFile();
+        parseFile();
 
     }
 
@@ -47,7 +48,8 @@ public class TextParser implements Runnable, IValidator {
         }
     }
 
-    private void parseFile(){
+    @Override
+    public void parseFile(){
         String line;
         String splittedArray[];
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName));) {
@@ -82,6 +84,7 @@ public class TextParser implements Runnable, IValidator {
     }
 
     public void printList(Map<String,Integer> objects){
+        logger.info("Новая итерация");
         for (Map.Entry<String, Integer> entry:objects.entrySet()) {
             logger.info("Key: " + entry.getKey() + " Value: "
                     + entry.getValue());

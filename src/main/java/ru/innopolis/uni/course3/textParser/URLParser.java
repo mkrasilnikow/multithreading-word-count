@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by innopolis on 14.12.2016.
  */
-public class URLParser implements Runnable {
+public class URLParser implements Runnable, IParser{
 
     private String fileName;
 
@@ -19,7 +19,8 @@ public class URLParser implements Runnable {
         this.fileName = fileName;
     }
 
-    private void parseFile(){
+    @Override
+    public void parseFile(){
         logger.info("Запустился поток обработки url-ресурса " + fileName +"\n");
         logger.info("Обнаружен url-ресурс " + fileName +"\n");
         logger.warn("Парсинг url-ресурсов не поддерживается");
